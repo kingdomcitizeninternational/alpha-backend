@@ -27,7 +27,7 @@ const sendNotification = async (token, notification, data = {}) => {
 
     const message = {
       notification: {
-        title: notification.title || 'Dexvault',
+        title: notification.title || 'Alphagainmetrics',
         body: notification.body || '',
       },
       data: data,

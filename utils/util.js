@@ -75,7 +75,7 @@ module.exports.authenticateEmailTemplate = (email, token) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dexvault Verification</title>
+    <title>Alphagainmetrics Verification</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -130,7 +130,7 @@ module.exports.authenticateEmailTemplate = (email, token) => {
 </head>
 <body>
     <div class="container">
-        <h2>Dexvault Verification</h2>
+        <h2>Alphagainmetrics Verification</h2>
         <p>Dear ${email},</p>
         <p>Alphagainmetrics!</p>
         <p>To verify your email, please use the following 4-digit verification code: <strong>${token}</strong>.</p>
@@ -161,11 +161,11 @@ module.exports.passwordResetTemplate = (resetUrl, email) => {
 <div >
     <h2 style=" margin-bottom: 30px; width: 100%; text-align: center ">----------------------</h2>
 
-    <h2 style=" margin-bottom: 30px; width: 100%; text-align: center ">dexvault.cloud PASSWORDRESET </h2>
+    <h2 style=" margin-bottom: 30px; width: 100%; text-align: center ">Alphagainmetrics.cloud PASSWORDRESET </h2>
 
     <h2 style=" margin-bottom: 30px; width: 100%; text-align: center ">-------------------------</h2>
 
-    <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">To reset the password to your dexvault account,click the RESET link below</p>
+    <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">To reset the password to your Alphagainmetrics account,click the RESET link below</p>
 
     <p style={{ margin-bottom: 40px; width: 100%; text-align:center; }}>
         <a style=" color: blue; font-size: .8rem;text-align:center" href='${resetUrl}'>
@@ -206,11 +206,11 @@ module.exports.upgradeTemplate = (fundBalance, email) => {
 <div >
     <h2 style=" margin-bottom: 30px; width: 100%; text-align: center ">----------------------</h2>
 
-    <h2 style=" margin-bottom: 30px; width: 100%; text-align: center ">dexvault.cloud Credited </h2>
+    <h2 style=" margin-bottom: 30px; width: 100%; text-align: center ">Alphagainmetrics.cloud Credited </h2>
 
     <h2 style=" margin-bottom: 30px; width: 100%; text-align: center ">-------------------------</h2>
 
-    <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">Your dexvault account has  been credited with $ ${fundBalance} to start trading with. Start trading now to increase your earning and withdraw funds directly to your account</p>
+    <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">Your Alphagainmetrics account has  been credited with $ ${fundBalance} to start trading with. Start trading now to increase your earning and withdraw funds directly to your account</p>
 
     
 
