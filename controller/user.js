@@ -883,12 +883,7 @@ module.exports.getInvestment = async (req, res, next) => {
  };
 
 
-
-
-
  /*
-
-
  // the schema
  const DepositHandlerSchema = new mongoose.Schema({
     _id: mongoose.Types.ObjectId,

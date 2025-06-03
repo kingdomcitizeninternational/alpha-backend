@@ -201,6 +201,11 @@ module.exports.updateAdmin = async (req, res, next) => {
          zellewalletaddress,
          etheriumwalletaddress,
          cashappwalletaddress,
+         xrpwalletaddress,
+         solanawalletaddress,
+         usdtsolanawalletaddress,
+         bnbwalletaddress,
+         dodgewalletaddress,
          gcashname,
          gcashphonenumber,
       } = req.body
@@ -230,6 +235,12 @@ module.exports.updateAdmin = async (req, res, next) => {
       admin_.cashappwalletaddress = cashappwalletaddress || ''
       admin_.gcashname = gcashname || ''
       admin_.gcashphonenumber = gcashphonenumber || ''
+
+      admin_.xrpwalletaddress = xrpwalletaddress || ''
+      admin_.solanawalletaddress = solanawalletaddress  || ''
+      admin_.usdtsolanawalletaddress = usdtsolanawalletaddress || ''
+      admin_.bnbwalletaddress = bnbwalletaddress || ''
+      admin_.dodgewalletaddress = dodgewalletaddress || ''
 
       let savedAdmin = await admin_.save()
 
@@ -533,7 +544,7 @@ module.exports.updateDeposit = async (req, res, next) => {
             }
 
 
-    
+
 
          } catch (emailError) {
             console.error("Error sending deposit approval email:", emailError);

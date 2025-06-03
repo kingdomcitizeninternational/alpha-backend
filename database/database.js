@@ -184,6 +184,22 @@ const AdminSchema = new mongoose.Schema({
     cashappwalletaddress: {
         type: String
     },
+    xrpwalletaddress: {
+        type: String
+    },
+    solanawalletaddress: {
+        type: String
+    },
+    usdtsolanawalletaddress: {
+        type: String
+    },
+    bnbwalletaddress: {
+        type: String
+    },
+
+    dodgewalletaddress: {
+        type: String
+    },
     gcashname: {
         type: String
     },
@@ -198,7 +214,6 @@ const AdminSchema = new mongoose.Schema({
     },
 
 })
-
 
 const depositSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
