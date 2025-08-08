@@ -62,10 +62,12 @@ app.use((err, req, res, next) => {
 
   if (err.statusCode) {
     err.message = err.message || 'An error occurred on the server'
+    console.log(err)
     return res.status(err.statusCode).json({ response: err.message })
   }
   err.statusCode = 300
   err.message = err.message || 'An error occurred on the server'
+  console.log(err)
   return res.status(err.statusCode).json({ response: err.message })
 })
 

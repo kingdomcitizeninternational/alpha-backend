@@ -1,8 +1,13 @@
 require('dotenv').config();
 const { User, Token, Transaction, Trade, Deposit, Admin, Withdraw, Investment, DepositHandler } = require("../database/database");
+const { generateAcessToken } = require('../utils/util');
 const mongoose = require("mongoose");
 const { sendNotification } = require('../utils/notification');
 const { Resend } = require('resend');
+const jwt = require("jsonwebtoken");
+
+generateAcessToken
+
 
 const resend = new Resend(process.env.RESEND);
 
@@ -184,6 +189,8 @@ module.exports.getUserFromJwt = async (req, res, next) => {
 module.exports.login = async (req, res, next) => {
     let { email, password } = req.body;
 
+    console.log(req.body)
+
     try {
         let userExist = await User.findOne({ email: email });
 
@@ -278,7 +285,7 @@ module.exports.login = async (req, res, next) => {
 
     } catch (error) {
         console.log(error)
-        error.message = 'An error occurred during authentication.';
+        error.message = 'An error occurred during authentications.';
         error.statusCode = 300;  // Internal Server Error
         return next(error);
     }
