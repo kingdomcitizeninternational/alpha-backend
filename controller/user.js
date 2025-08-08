@@ -6,7 +6,7 @@ const { sendNotification } = require('../utils/notification');
 const { Resend } = require('resend');
 const jwt = require("jsonwebtoken");
 
-generateAcessToken
+
 
 
 const resend = new Resend(process.env.RESEND);
