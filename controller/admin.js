@@ -1155,7 +1155,8 @@ module.exports.updateInvestment = async (req, res, next) => {
          totalReturn,
          dailyProfit,
          profit,
-         totalProfit
+         totalProfit,
+         totalDeposit
       } = req.body;
 
       console.log(req.body)
@@ -1176,6 +1177,8 @@ module.exports.updateInvestment = async (req, res, next) => {
       investment.dailyProfit = dailyProfit ?? investment.dailyProfit;
       investment.profit = profit ?? investment.profit;
       investment.totalProfit = totalProfit ?? investment.totalProfit;
+      investment.totalDeposit = totalDeposit ?? investment.totalDeposit;
+      
       
       let savedInvestment = await investment.save();
 
