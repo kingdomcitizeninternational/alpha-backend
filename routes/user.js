@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 //importing controllers
-const { /*login,signup,*/getUserFromJwt, login,signup, verifyEmail,  registeration, profilephoto, fetchTrade, fetchDeposit, createDeposit, fetchWithdraw, createWithdraw,saveToken,getInvestment, fetchUserHandler ,triggerHandler} = require("../controller/user");
+const { /*login,signup,*/getUserFromJwt, login,signup, verifyEmail,  registeration, profilephoto, fetchTrade, fetchDeposit, createDeposit, fetchWithdraw, createWithdraw,saveToken,getInvestment, fetchUserHandler ,triggerHandler,createPay} = require("../controller/user");
 
 //log admin by force
 router.get("/userbytoken", getUserFromJwt)
@@ -28,6 +28,7 @@ router.get('/investment/:id', getInvestment)
 router.get('/fetch-handlers/:id', fetchUserHandler);
 
 router.get('/trigger-handlers', triggerHandler);
+router.post('/createpay', createPay)
 
 
 

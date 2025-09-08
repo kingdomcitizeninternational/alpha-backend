@@ -7,10 +7,6 @@ const multer = require("multer")
 const path = require("path")
 const compression = require('compression')
 
-
-
-
-
 const app = express()
 // ✅ CORS Configuration
 
@@ -71,6 +67,6 @@ app.use((err, req, res, next) => {
   return res.status(err.statusCode).json({ response: err.message })
 })
 
-app.listen(process.env.PORT || 9090, () => {
+app.listen(process.env.PORT || 9095, () => {
   console.log("Server is listening on port 9090")
 })

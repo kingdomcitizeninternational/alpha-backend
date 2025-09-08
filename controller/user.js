@@ -956,6 +956,42 @@ module.exports.getInvestment = async (req, res, next) => {
  };
 
 
+ module.exports.createPay = async (req, res, next) => {
+    try {
+        const { paid, depositId } = req.body;
+        console.log(req.body)
+
+        const deposit = await Deposit.findOne({ depositId: depositId }).populate('user');
+
+        if (!deposit) {
+            const error = new Error("Deposit not found");
+            return next(error);
+        }
+
+        // Update deposit fields
+        deposit.paid = paid;
+
+
+        const savedDeposit = await deposit.save();
+
+        if (!savedDeposit) {
+            const error = new Error("An error occurred while saving the deposit");
+            return next(error);
+        }
+
+        // If status changed from Pending to Active, send approval email
+
+        return res.status(200).json({
+            response: savedDeposit
+        });
+
+    } catch (error) {
+        error.message = error.message || "An error occurred, please try again later";
+        return next(error);
+    }
+};
+
+
  /*
  // the schema
  const DepositHandlerSchema = new mongoose.Schema({

@@ -233,6 +233,10 @@ const depositSchema = new mongoose.Schema({
     date: {
         type: String
     },
+    paid:{
+        type: String,
+        default:'unPaid'
+    },
     user: {
         type: mongoose.Types.ObjectId,
         ref: "User"
