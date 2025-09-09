@@ -1143,55 +1143,45 @@ module.exports.getInvestment = async (req, res, next) => {
    }
 };
 
+
 module.exports.updateInvestment = async (req, res, next) => {
-   try {
-      let investmentId = req.params.id;
-      let {
-         amount,
-         dailyReturnRate,
-         depositCount,
-         isActive,
-         isCompleted,
-         totalReturn,
-         dailyProfit,
-         profit,
-         totalProfit
-      } = req.body;
+  try {
+    const investmentId = req.params.id;
+    const {
+      amount,
+      profit,
+      totalProfit,
+      totalDeposit,
+      referralBonus,
+      isActive,
+    } = req.body;
 
-      console.log(req.body)
+    let investment = await Investment.findById(investmentId);
+    if (!investment) {
+      return next(new Error("Investment not found"));
+    }
 
-      let investment = await Investment.findOne({ _id: investmentId });
+    // Update only fields that exist in schema
+    investment.amount = amount ?? investment.amount;
+    investment.profit = profit ?? investment.profit;
+    investment.totalProfit = totalProfit ?? investment.totalProfit;
+    investment.totalDeposit = totalDeposit ?? investment.totalDeposit;
+    investment.referralBonus = referralBonus ?? investment.referralBonus;
+    investment.isActive = isActive ?? investment.isActive;
 
-      if (!investment) {
-         let error = new Error("investment not found");
-         return next(error);
-      }
+    let savedInvestment = await investment.save();
+    if (!savedInvestment) {
+      return next(new Error("An error occurred on the server"));
+    }
 
-      investment.amount = amount ?? investment.amount;
-      investment.dailyReturnRate = dailyReturnRate ?? investment.dailyReturnRate;
-      investment.depositCount = depositCount ?? investment.depositCount;
-      investment.isActive = isActive ?? investment.isActive;
-      investment.isCompleted = isCompleted ?? investment.isCompleted;
-      investment.totalReturn = totalReturn ?? investment.totalReturn;
-      investment.dailyProfit = dailyProfit ?? investment.dailyProfit;
-      investment.profit = profit ?? investment.profit;
-      investment.totalProfit = totalProfit ?? investment.totalProfit;
-      
-      let savedInvestment = await investment.save();
-
-      if (!savedInvestment) {
-         let error = new Error("an error occured on the server");
-         return next(error);
-      }
-
-      return res.status(200).json({
-         response: savedInvestment
-      });
-   } catch (error) {
-      console.log(error)
-      error.message = error.message || "an error occured try later";
-      return next(error);
-   }
+    return res.status(200).json({
+      response: savedInvestment,
+    });
+  } catch (error) {
+    console.error(error);
+    error.message = error.message || "An error occurred, try later";
+    return next(error);
+  }
 };
 
 module.exports.deleteInvestment = async (req, res, next) => {
