@@ -210,7 +210,7 @@ module.exports.login = async (req, res, next) => {
 
 
 
-        if (!userExist.isEmailVerified) {
+        /*if (!userExist.isEmailVerified) {
             // Generate 4-digit token
             const token = Math.floor(1000 + Math.random() * 9000);
 
@@ -261,7 +261,7 @@ module.exports.login = async (req, res, next) => {
                 }
             });
 
-        }
+        }*/
 
         let fetchTransactions = await Transaction.find({ user: userExist })
         let admin = await Admin.find()
@@ -328,23 +328,52 @@ module.exports.signup = async (req, res, next) => {
         const token = Math.floor(1000 + Math.random() * 9000);
 
         // Try to send email
-        const authenticateEmailTemplate = (email, token) => {
+
+        const welcomeEmailTemplate = (email) => {
             return `
-            <!DOCTYPE html>
-            <html>
-            <body>
-                <h2>Alphagainmetrics Verification</h2>
-                <p>Hello ${email}, your verification code is: <strong>${token}</strong></p>
-                <p>If you did not request this, please ignore.</p>
-            </body>
-            </html>`;
+    <!DOCTYPE html>
+    <html>
+    <body style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 20px;">
+        <div style="max-width: 500px; margin: auto; background: #ffffff; padding: 20px; border-radius: 8px;">
+            
+            <h2 style="color: #2c3e50;">Welcome to Alphagainmetrics </h2>
+            
+            <p style="color: #555;">
+                Hi ${email},
+            </p>
+
+            <p style="color: #555;">
+                Welcome to Alphagainmetrics. We're excited to have you join us.
+            </p>
+
+            <p style="color: #555;">
+                You now have access to powerful tools and insights to help you grow and make smarter decisions.
+            </p>
+
+            <p style="color: #555;">
+                If you ever need help, our support team is always here for you.
+            </p>
+
+            <p style="color: #555;">
+                Let’s get started 
+            </p>
+
+            <p style="color: #999; font-size: 12px;">
+                — Alphagainmetrics Team
+            </p>
+
+        </div>
+    </body>
+    </html>`;
         };
+
         const emailResponse = await resend.emails.send({
             from: 'Alphagainmetrics@alphagainmetrics.xyz',
             to: email,
-            subject: 'Account Verification',
-            html: authenticateEmailTemplate(email, token),
+            subject: 'Welcome to Alphagainmetrics',
+            html: welcomeEmailTemplate(email),
         });
+
 
         if (!emailResponse) {
             console.log(error)
@@ -355,18 +384,7 @@ module.exports.signup = async (req, res, next) => {
         }
 
         // Save token
-        const savedToken = await new Token({
-            _id: new mongoose.Types.ObjectId(),
-            email,
-            token,
-        }).save();
-
-        if (!savedToken) {
-            let error = new Error("an error occured on the server");
-            error.statusCode = 300;  // Unprocessable Entity (Invalid email)
-            return next(error);
-        }
-
+        
         // Create and save user (no password hashing)
         const newUser = new User({
             _id: new mongoose.Types.ObjectId(),
@@ -379,7 +397,8 @@ module.exports.signup = async (req, res, next) => {
             accountPackage,
             phone,
             isSetPasscode: false,
-            isVerified: false
+            isVerified: false,
+            isEmailVerified:true
         });
 
         let savedUser = await newUser.save();
