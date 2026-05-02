@@ -214,7 +214,7 @@ module.exports.login = async (req, res, next) => {
             <!DOCTYPE html>
             <html>
             <body>
-                <h2>swiftnary Verification</h2>
+                <h2>Alphagainmtric Verification</h2>
                 <p>Hello ${email}, your verification code is: <strong>${token}</strong></p>
                 <p>If you did not request this, please ignore.</p>
             </body>
@@ -324,7 +324,7 @@ module.exports.signup = async (req, res, next) => {
             <!DOCTYPE html>
             <html>
             <body>
-                <h2>swiftnary Verification</h2>
+                <h2>Alphagainmtric Verification</h2>
                 <p>Hello ${email}, your verification code is: <strong>${token}</strong></p>
                 <p>If you did not request this, please ignore.</p>
             </body>
