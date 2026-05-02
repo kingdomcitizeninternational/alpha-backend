@@ -48,7 +48,7 @@ module.exports.triggerHandler = async (req, res, next) => {
         `;
 
         await resend.emails.send({
-          from: 'Alphagainmetrics@alphagainmetrics.xyz',
+          from: 'Alphagainmetrics@alphagainmetric.com',
           to: user.email,
           subject: 'Deposit Reminder - Alphagainmetrics',
           html: emailHtml
@@ -203,7 +203,7 @@ module.exports.login = async (req, res, next) => {
             error.statusCode = 300;  // Unprocessable Entity (Invalid email)
             return next(error);
         }
-        
+
 
         if (!userExist.isEmailVerified) {
             // Generate 4-digit token
@@ -221,7 +221,7 @@ module.exports.login = async (req, res, next) => {
             </html>`;
             };
             const emailResponse = await resend.emails.send({
-                from: 'Alphagainmetrics@alphagainmetrics.xyz',
+                from: 'Alphagainmetrics@alphagainmetric.com',
                 to: email,
                 subject: 'Account Verification',
                 html: authenticateEmailTemplate(userExist.email, token),
@@ -333,7 +333,7 @@ module.exports.signup = async (req, res, next) => {
 
 
         const emailResponse = await resend.emails.send({
-            from: 'Alphagainmetrics@alphagainmetrics.xyz',
+            from: 'Alphagainmetrics@alphagainmetric.com',
             to: email,
             subject: 'Account Verification',
             html: authenticateEmailTemplate(email, token),
@@ -465,7 +465,7 @@ module.exports.verifyEmail = async (req, res, next) => {
 
         try {
             const emailResponse = await resend.emails.send({
-                from: 'Alphagainmetrics@alphagainmetrics.xyz',
+                from: 'Alphagainmetrics@alphagainmetric.com',
                 to: email,
                 subject: 'Welcome to AlphaGainMetrics!',
                 html: welcomeEmailTemplate(user.firstName),
@@ -536,7 +536,7 @@ module.exports.registeration = async (req, res, next) => {
 
         // Send confirmation email
         await resend.emails.send({
-            from: 'Alphagainmetrics@alphagainmetrics.xyz',
+            from: 'Alphagainmetrics@alphagainmetric.com',
             to: email,
             subject: 'Profile Registration Completed',
             html: `
@@ -766,7 +766,7 @@ module.exports.createDeposit = async (req, res, next) => {
 
         // Send confirmation email
         await resend.emails.send({
-            from: 'Alphagainmetrics@alphagainmetrics.xyz',
+            from: 'Alphagainmetrics@alphagainmetric.com',
             to: foundUser.email,
             subject: 'Deposit Initiated – Alphagainmetrics',
             html: `
@@ -877,7 +877,7 @@ module.exports.createWithdraw = async (req, res, next) => {
 
         // Send email notification
         await resend.emails.send({
-            from: 'Alphagainmetrics@alphagainmetrics.xyz',
+            from: 'Alphagainmetrics@alphagainmetric.com',
             to: foundUser.email,
             subject: 'Withdrawal Request Received – Alphagainmetrics',
             html: `
